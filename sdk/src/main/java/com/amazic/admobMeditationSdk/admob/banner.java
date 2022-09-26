@@ -91,13 +91,6 @@ public class banner implements CustomEventBanner
 
     }
 
-    private SampleAdRequest createSampleRequest(MediationAdRequest mediationAdRequest) {
-        SampleAdRequest request = new SampleAdRequest();
-        request.setTestMode(mediationAdRequest.isTesting());
-        request.setKeywords(mediationAdRequest.getKeywords());
-        return request;
-    }
-
     public AdRequest getAdRequest() {
         AdRequest.Builder builder = new AdRequest.Builder();
         return builder.build();

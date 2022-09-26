@@ -12,15 +12,15 @@ public class FirebaseAnalyticsUtil {
     public static String NATIVE = "NATIVE";
     private static final String TAG = "FirebaseAnalyticsUtil";
 
-    public static void logEventMediationAdmob(Context context, String adsName) {
+    public static void logEventMediationAdmob(Context context, String adsType) {
         Bundle bundle = new Bundle();
-        Log.e(TAG,"Mediation Admob :"+adsName);
-        FirebaseAnalytics.getInstance(context).logEvent("MediationAdmob: "+adsName, bundle);
+        Log.e(TAG,"Mediation Admob :"+adsType);
+        FirebaseAnalytics.getInstance(context).logEvent("MediationAdmob: "+adsType, bundle);
     }
 
-    public static void logEventMediationAdx(Context context, String adsName) {
+    public static void logEventMediationAdx(Context context, String adsType) {
         Bundle bundle = new Bundle();
-        Log.e(TAG,"MediationAdmob Adx :"+adsName);
-        FirebaseAnalytics.getInstance(context).logEvent("MediationAdx: "+adsName, bundle);
+        Log.e(TAG,"MediationAdmob Adx :"+adsType);
+        FirebaseAnalytics.getInstance(context).logEvent("MediationAdx: "+adsType, bundle);
     }
 }
