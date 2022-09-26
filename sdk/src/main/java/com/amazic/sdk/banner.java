@@ -8,16 +8,18 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.mediation.MediationAdRequest;
 import com.google.android.gms.ads.mediation.customevent.CustomEventBanner;
 import com.google.android.gms.ads.mediation.customevent.CustomEventBannerListener;
 
 public class banner implements CustomEventBanner
 {
-    private String Tag = "SDK Banner";
+    private String Tag = "SDKCustom Banner";
     private SampleAdView sampleAdView;
     private AdView adView;
     @Override
@@ -27,14 +29,49 @@ public class banner implements CustomEventBanner
         adView.setAdUnitId(s);
         adView.setAdSize(adSize);
         adView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        adView.loadAd(getAdRequest());
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                if(customEventBannerListener != null){
+                    customEventBannerListener.onAdClosed();
+                }
+            }
 
-        sampleAdView = new SampleAdView(context);
-        sampleAdView.setAdUnit(s);
-        sampleAdView.setSize(new SampleAdSize(adSize.getWidth(), adSize.getHeight()));
-        sampleAdView.setAdListener(new SampleCustomBannerEventForwarder(customEventBannerListener, adView));
-        // Make an ad request.
-        sampleAdView.fetchAd(createSampleRequest(mediationAdRequest));
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                if(customEventBannerListener != null){
+                    customEventBannerListener.onAdFailedToLoad(loadAdError);
+                }
+            }
+
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+                if(customEventBannerListener != null){
+                    customEventBannerListener.onAdOpened();
+                }
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                if(customEventBannerListener != null){
+                    customEventBannerListener.onAdLoaded(adView);
+                }
+            }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+                if(customEventBannerListener != null){
+                    customEventBannerListener.onAdClicked();
+                }
+            }
+
+        });
+        adView.loadAd(getAdRequest());
     }
 
     @Override
