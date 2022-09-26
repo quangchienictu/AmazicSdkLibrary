@@ -12,6 +12,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.admanager.AdManagerAdRequest;
 import com.google.android.gms.ads.mediation.NativeMediationAdRequest;
 import com.google.android.gms.ads.mediation.customevent.CustomEventNative;
 import com.google.android.gms.ads.mediation.customevent.CustomEventNativeListener;
@@ -53,7 +54,7 @@ public class nativeAds implements CustomEventNative {
                 .build();
 
         // Begin a request.
-        adLoader.loadAd( new AdRequest.Builder().build());
+        adLoader.loadAd( new AdManagerAdRequest.Builder().build());
     }
 
 
