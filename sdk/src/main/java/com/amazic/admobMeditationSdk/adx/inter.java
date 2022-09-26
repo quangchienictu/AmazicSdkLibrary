@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.amazic.admobMeditationSdk.SampleAdRequest;
+import com.amazic.admobMeditationSdk.util.FirebaseAnalyticsUtil;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
@@ -29,6 +30,7 @@ public class inter  implements CustomEventInterstitial {
     @Override
     public void requestInterstitialAd(@NonNull Context context, @NonNull CustomEventInterstitialListener customEventInterstitialListener, @Nullable String s, @NonNull MediationAdRequest mediationAdRequest, @Nullable Bundle bundle) {
         Log.e(Tag, "ID :"+s );
+        FirebaseAnalyticsUtil.logEventMediationAdx(context,FirebaseAnalyticsUtil.INTER);
         this.mContext = context;
         isLoadSuccess = false;
         AdManagerAdRequest adRequest = new AdManagerAdRequest.Builder().build();
@@ -75,7 +77,9 @@ public class inter  implements CustomEventInterstitial {
 
     @Override
     public void onDestroy() {
-
+        if (mInterstitialAd != null) {
+            mInterstitialAd = null;
+        }
     }
 
     @Override
@@ -86,16 +90,5 @@ public class inter  implements CustomEventInterstitial {
     @Override
     public void onResume() {
 
-    }
-
-    public AdRequest getAdRequest() {
-        AdRequest.Builder builder = new AdRequest.Builder();
-        return builder.build();
-    }
-    private SampleAdRequest createSampleRequest(MediationAdRequest mediationAdRequest) {
-        SampleAdRequest request = new SampleAdRequest();
-        request.setTestMode(mediationAdRequest.isTesting());
-        request.setKeywords(mediationAdRequest.getKeywords());
-        return request;
     }
 }

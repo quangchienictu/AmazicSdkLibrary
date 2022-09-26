@@ -10,11 +10,13 @@ import androidx.annotation.Nullable;
 
 import com.amazic.admobMeditationSdk.SampleAdRequest;
 import com.amazic.admobMeditationSdk.SampleAdView;
+import com.amazic.admobMeditationSdk.util.FirebaseAnalyticsUtil;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.admanager.AdManagerAdRequest;
 import com.google.android.gms.ads.admanager.AdManagerAdView;
 import com.google.android.gms.ads.mediation.MediationAdRequest;
 import com.google.android.gms.ads.mediation.customevent.CustomEventBanner;
@@ -23,11 +25,11 @@ import com.google.android.gms.ads.mediation.customevent.CustomEventBannerListene
 public class banner implements CustomEventBanner
 {
     private String Tag = "SDKCustom Banner";
-    private SampleAdView sampleAdView;
     private AdManagerAdView adView;
     @Override
     public void requestBannerAd(@NonNull Context context, @NonNull CustomEventBannerListener customEventBannerListener, @Nullable String s, @NonNull AdSize adSize, @NonNull MediationAdRequest mediationAdRequest, @Nullable Bundle bundle) {
         Log.e(Tag, "ID :"+s );
+        FirebaseAnalyticsUtil.logEventMediationAdx(context,FirebaseAnalyticsUtil.BANNER);
         adView = new AdManagerAdView(context);
         adView.setAdUnitId(s);
         adView.setAdSize(adSize);
@@ -74,7 +76,7 @@ public class banner implements CustomEventBanner
             }
 
         });
-        adView.loadAd(getAdRequest());
+        adView.loadAd(new AdManagerAdRequest.Builder().build());
     }
 
     @Override
@@ -90,8 +92,4 @@ public class banner implements CustomEventBanner
 
     }
 
-    public AdRequest getAdRequest() {
-        AdRequest.Builder builder = new AdRequest.Builder();
-        return builder.build();
-    }
 }
