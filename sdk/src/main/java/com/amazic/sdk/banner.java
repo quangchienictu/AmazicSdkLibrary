@@ -17,7 +17,7 @@ import com.google.android.gms.ads.mediation.customevent.CustomEventBannerListene
 
 public class banner implements CustomEventBanner
 {
-    private String Tag = "Banner";
+    private String Tag = "SDK Banner";
     private SampleAdView sampleAdView;
     private AdView adView;
     @Override

@@ -20,7 +20,7 @@ public class inter  implements CustomEventInterstitial {
     private InterstitialAd interstitialAd1;
     private SampleInterstitial sampleInterstitial;
     private Context context1;
-    private String Tag = "Inter";
+    private String Tag = "SDK Inter";
     @Override
     public void requestInterstitialAd(@NonNull Context context, @NonNull CustomEventInterstitialListener customEventInterstitialListener, @Nullable String s, @NonNull MediationAdRequest mediationAdRequest, @Nullable Bundle bundle) {
         Log.e(Tag, "ID :"+s );

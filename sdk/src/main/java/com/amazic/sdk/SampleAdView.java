@@ -87,21 +87,7 @@ public class SampleAdView extends TextView {
       listener.onAdFetchFailed(SampleErrorCode.BAD_REQUEST);
     }
 
-    // Randomly decide whether to succeed or fail.
-    Random random = new Random();
-    int nextInt = random.nextInt(100);
-    if (listener != null) {
-      if (nextInt < 85) {
-        Log.e("xxxxx", "load fetchAd" );
-        listener.onAdFetchSucceeded();
-      } else if (nextInt < 90) {
-        listener.onAdFetchFailed(SampleErrorCode.UNKNOWN);
-      } else if (nextInt < 95) {
-        listener.onAdFetchFailed(SampleErrorCode.NETWORK_ERROR);
-      } else if (nextInt < 100) {
-        listener.onAdFetchFailed(SampleErrorCode.NO_INVENTORY);
-      }
-    }
+    listener.onAdFetchSucceeded();
   }
 
   /**
