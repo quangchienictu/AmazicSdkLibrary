@@ -1,4 +1,4 @@
-package com.amazic.sdk;
+package com.amazic.admobMeditationSdk.admob;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.amazic.admobMeditationSdk.SampleAdRequest;
+import com.amazic.admobMeditationSdk.SampleAdView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;

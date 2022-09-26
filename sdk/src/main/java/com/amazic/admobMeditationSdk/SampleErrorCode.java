@@ -14,26 +14,14 @@
  * limitations under the License.
  */
 
-package com.amazic.sdk;
+package com.amazic.admobMeditationSdk;
 
 /**
- * The size of an ad request to the sample ad network.
+ * Error codes for reasons why an ad request may fail.
  */
-public class SampleAdSize {
-
-  private final int width;
-  private final int height;
-
-  public SampleAdSize(int width, int height) {
-    this.width = width;
-    this.height = height;
-  }
-
-  public int getWidth() {
-    return width;
-  }
-
-  public int getHeight() {
-    return height;
-  }
+public enum SampleErrorCode {
+  UNKNOWN,
+  BAD_REQUEST,
+  NETWORK_ERROR,
+  NO_INVENTORY
 }

@@ -1,4 +1,4 @@
-package com.amazic.sdk;
+package com.amazic.admobMeditationSdk;
 
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;

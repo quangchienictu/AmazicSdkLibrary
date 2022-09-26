@@ -1,4 +1,4 @@
-package com.amazic.sdk;
+package com.amazic.admobMeditationSdk;
 
 import org.junit.Test;
 

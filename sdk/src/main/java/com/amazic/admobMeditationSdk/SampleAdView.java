@@ -14,31 +14,43 @@
  * limitations under the License.
  */
 
-package com.amazic.sdk;
+package com.amazic.admobMeditationSdk;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.Random;
 
 /**
- * A sample interstitial ad. This is an example of an interstitial class that most ad networks SDKs
+ * An ad view for the sample ad network. This is an example of an ad view that most ad network SDKs
  * have.
  */
-public class SampleInterstitial {
+public class SampleAdView extends TextView {
 
-  private final Context context;
+  private SampleAdSize adSize;
   private String adUnit;
   private SampleAdListener listener;
 
   /**
-   * Create a new {@link SampleInterstitial}.
+   * Create a new {@link SampleAdView}.
    *
    * @param context An Android {@link Context}.
    */
-  public SampleInterstitial(Context context) {
-    this.context = context;
+  public SampleAdView(Context context) {
+    super(context);
+  }
+
+  /**
+   * Sets the size of the banner.
+   *
+   * @param size The banner size.
+   */
+  public void setSize(SampleAdSize size) {
+    this.adSize = size;
   }
 
   /**
@@ -70,8 +82,8 @@ public class SampleInterstitial {
       return;
     }
 
-    // If the publisher didn't set an ad unit, return a bad request.
-    if (adUnit == null) {
+    // If the publisher didn't set a size or ad unit, return a bad request.
+    if (adSize == null || adUnit == null) {
       listener.onAdFetchFailed(SampleErrorCode.BAD_REQUEST);
     }
 
@@ -79,10 +91,9 @@ public class SampleInterstitial {
   }
 
   /**
-   * Destroy the interstitial.
+   * Destroy the banner.
    */
   public void destroy() {
     listener = null;
   }
 }
-

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.amazic.sdk;
+package com.amazic.admobMeditationSdk;
 
 /**
  * A sample ad listener to listen for ad events. These ad events more or less represent the events

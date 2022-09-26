@@ -1,4 +1,4 @@
-package com.amazic.sdk;
+package com.amazic.admobMeditationSdk.adx;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,9 +8,13 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.amazic.admobMeditationSdk.SampleAdRequest;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.admanager.AdManagerAdRequest;
+import com.google.android.gms.ads.admanager.AdManagerInterstitialAd;
+import com.google.android.gms.ads.admanager.AdManagerInterstitialAdLoadCallback;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.ads.mediation.MediationAdRequest;
@@ -18,7 +22,7 @@ import com.google.android.gms.ads.mediation.customevent.CustomEventInterstitial;
 import com.google.android.gms.ads.mediation.customevent.CustomEventInterstitialListener;
 
 public class inter  implements CustomEventInterstitial {
-    private InterstitialAd mInterstitialAd;
+    private AdManagerInterstitialAd mInterstitialAd;
     private Context mContext;
     private boolean isLoadSuccess;
     private String Tag = "SDKCustom Inter";
@@ -27,8 +31,8 @@ public class inter  implements CustomEventInterstitial {
         Log.e(Tag, "ID :"+s );
         this.mContext = context;
         isLoadSuccess = false;
-        AdRequest adRequest = new AdRequest.Builder().build();
-        InterstitialAd.load(context, s, adRequest, new InterstitialAdLoadCallback() {
+        AdManagerAdRequest adRequest = new AdManagerAdRequest.Builder().build();
+        AdManagerInterstitialAd.load(context, s, adRequest, new AdManagerInterstitialAdLoadCallback() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 if(customEventInterstitialListener != null){
@@ -37,7 +41,7 @@ public class inter  implements CustomEventInterstitial {
             }
 
             @Override
-            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+            public void onAdLoaded(@NonNull AdManagerInterstitialAd interstitialAd) {
                 if(customEventInterstitialListener != null){
                     customEventInterstitialListener.onAdLoaded();
                 }

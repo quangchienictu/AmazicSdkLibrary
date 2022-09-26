@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.amazic.sdk;
+package com.amazic.admobMeditationSdk;
 
 import java.util.Set;
 
